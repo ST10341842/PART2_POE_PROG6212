@@ -72,7 +72,7 @@
                 <div class="image-container">
                     <img src="images/download%20(2).png"/>
                 </div>
-                <asp:Button ID="ViewProfileButton" runat="server" OnClick="ViewProfileButton_Click" Text="Claim History" />
+                 <asp:Button ID="HRButton" runat="server" OnClick="HRButton_Click" Text="Human Resources" />
             </div>
             <div class="button-container">
                 <div class="image-container">

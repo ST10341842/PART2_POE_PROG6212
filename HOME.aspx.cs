@@ -12,31 +12,29 @@ namespace PART2_POE_PROG6212
         protected void Page_Load(object sender, EventArgs e)
         {
         }
-
-        protected void ViewProfileButton_Click(object sender, EventArgs e)
+        protected void HRButton_Click(object sender, EventArgs e)
         {
-            // Redirect to Review Claim page
-            Response.Redirect("ReviewCLaims.aspx");
+            Session["UserRole"] = "HR"; 
+            Response.Redirect("ReviewClaims.aspx");  // Redirect to the review Claims page
         }
-
-        // Lecturer role selected
+      
         protected void LecturerButton_Click(object sender, EventArgs e)
-        {
-            Session["UserRole"] = "Lecturer";  // Set role to Lecturer
+        { 
+            Session["UserRole"] = "Lecturer";  
             Response.Redirect("ClaimForm.aspx");  // Redirect to the claim form page
         }
 
-        // Program Coordinator role selected
+        
         protected void PCButton_Click(object sender, EventArgs e)
         {
-            Session["UserRole"] = "PC";  // Set role to Program Coordinator
+            Session["UserRole"] = "PC";  
             Response.Redirect("ReviewClaims.aspx");  // Redirect to review claims page
         }
 
-        // Academic Manager role selected
+
         protected void AMButton_Click(object sender, EventArgs e)
         {
-            Session["UserRole"] = "AM";  // Set role to Academic Manager
+            Session["UserRole"] = "AM"; 
             Response.Redirect("ReviewClaims.aspx");  // Redirect to review claims page
         }
     }

@@ -127,6 +127,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="EditClaim.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="HOME.aspx" />
@@ -213,6 +214,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Claim.cs" />
     <Compile Include="ClaimForm.aspx.cs">
       <DependentUpon>ClaimForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -233,6 +235,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditClaim.aspx.cs">
+      <DependentUpon>EditClaim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditClaim.aspx.designer.cs">
+      <DependentUpon>EditClaim.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

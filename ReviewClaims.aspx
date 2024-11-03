@@ -5,49 +5,47 @@
     <meta charset="utf-8" />
     <title>Review Claims</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        body { 
+            font-family: Arial,  sans-serif; 
+            background-color: #f4f4f4; 
         }
-        .navbar {
-            background-color: #007BFF;
-            overflow: hidden;
-            padding: 10px 20px;
+        .navbar { 
+            background-color: #007BFF; 
+            overflow: hidden; padding: 10px 20px;
         }
-        .navbar a {
-            color: white;  
-            padding: 14px 20px;
-            text-decoration: none;
-            float: left;
-            font-size: 17px;
+        .navbar a { 
+            color: white; 
+            padding: 14px 20px; 
+            text-decoration: none; 
+            float: left; 
+            font-size: 17px; 
         }
-        .navbar a:hover {
+        .navbar a:hover { 
             background-color: #0056b3;
         }
-        .container {
-            width: 100%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+        .container { 
+            width: 100%; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background-color: white; 
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); 
+            border-radius: 10px; 
         }
-
-        .button-container {
-            display: flex;
-            gap: 10px; /* Add space between buttons */
+        .button-container { 
+            display: flex; 
+            gap: 10px; 
         }
-        .action-button {
-            padding: 8px 16px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
+        .action-button { 
+            padding: 8px 16px; 
+            background-color: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
         }
-        .action-button:hover {
-            background-color: #0056b3;
+        .action-button:hover { 
+            background-color: #0056b3; 
+        }
     </style>
 </head>
 <body>
@@ -69,23 +67,27 @@
                     <asp:BoundField DataField="HourlyRate" HeaderText="Hourly Rate" />
                     <asp:BoundField DataField="TotalClaim" HeaderText="Total Claim" />
                     <asp:BoundField DataField="ClaimStatus" HeaderText="Claim Status" />
-                   <asp:TemplateField HeaderText="Supporting Documents">
-                    <ItemTemplate>
-                        <asp:HyperLink ID="SupportingDocLink" runat="server" 
-                            NavigateUrl='<%# ResolveUrl("~/UploadedFiles/" + Eval("SupportingDocuments")) %>' 
-                            Text="View Document" 
-                            Target="_blank" 
-                            Visible='<%# !string.IsNullOrEmpty(Eval("SupportingDocuments") as string) %>' />
-                    </ItemTemplate>
-                </asp:TemplateField>
-<asp:TemplateField HeaderText="Actions">
-    <ItemTemplate>
-        <div class="button-container">
-            <asp:Button runat="server" CommandName="Approve" CommandArgument='<%# Eval("ClaimID") %>' Text="Approve" Visible='<%# ShowActionButtonsForPending(Eval("ClaimStatus")) %>' CssClass="action-button" />
-            <asp:Button runat="server" CommandName="Reject" CommandArgument='<%# Eval("ClaimID") %>' Text="Reject" Visible='<%# ShowActionButtonsForPending(Eval("ClaimStatus")) %>' CssClass="action-button" />
-        </div>
-    </ItemTemplate>
-</asp:TemplateField>
+                    <asp:TemplateField HeaderText="Supporting Documents">
+                        <ItemTemplate>
+                            <asp:HyperLink ID="SupportingDocLink" runat="server" 
+                                NavigateUrl='<%# ResolveUrl("~/UploadedFiles/" + Eval("SupportingDocuments")) %>' 
+                                Text="View Document" Target="_blank" 
+                                Visible='<%# !string.IsNullOrEmpty(Eval("SupportingDocuments") as string) %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemTemplate>
+                            <div class="button-container">
+                              
+                                <asp:Button runat="server" CommandName="Approve" CommandArgument='<%# Eval("ClaimID") %>' Text="Approve"  Visible='<%# ShowActionButtonsForPending(Eval("ClaimStatus")) %>' CssClass="action-button" />
+                                <asp:Button runat="server" CommandName="Reject" CommandArgument='<%# Eval("ClaimID") %>' Text="Reject" Visible='<%# ShowActionButtonsForPending(Eval("ClaimStatus")) %>' CssClass="action-button" />
+
+                                <!--HR-specific buttons for Download and Edit -->
+                               <asp:Button runat="server" CommandName="DownloadInvoice" CommandArgument='<%# Eval("ClaimID") %>' Text="Download Invoice" Visible='<%# ShowHRButtons() %>' CssClass="action-button" />
+                                <asp:Button runat="server" CommandName="Edit" CommandArgument='<%# Eval("ClaimID") %>' Text="Edit" Visible='<%# ShowHRButtons() %>' CssClass="action-button" />
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
