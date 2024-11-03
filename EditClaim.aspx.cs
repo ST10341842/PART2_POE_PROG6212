@@ -49,7 +49,7 @@ namespace PART2_POE_PROG6212
                 }
             }
         }
-
+        // Event handler for the Update button to update claim information in the database
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MyDbConnection"].ConnectionString;
@@ -57,6 +57,7 @@ namespace PART2_POE_PROG6212
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
+                // SQL query to update the claim details in the database
                 string query = "UPDATE Claims SET LecturerName = @LecturerName, LecturerEmail = @LecturerEmail, Module = @Module, ClaimDate = @ClaimDate, HoursWorked = @HoursWorked, HourlyRate = @HourlyRate, TotalClaim = @TotalClaim, ClaimStatus = @ClaimStatus WHERE ClaimID = @ClaimID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -71,14 +72,14 @@ namespace PART2_POE_PROG6212
                     cmd.Parameters.AddWithValue("@ClaimStatus", txtClaimStatus.Text);
                     cmd.Parameters.AddWithValue("@ClaimID", int.Parse(txtClaimID.Text));
 
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery(); // Execute the update command
                 }
             }
 
             // Redirect back to ReviewClaims page
             Response.Redirect("ReviewClaims.aspx");
         }
-
+        // Event handler for the Cancel button to return to the ReviewClaims page without saving changes
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("ReviewClaims.aspx");
